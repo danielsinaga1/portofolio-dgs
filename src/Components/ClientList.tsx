@@ -1,127 +1,58 @@
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import React from "react";
+import { techStackDetails, skillGroups } from "./Details";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import client01 from "../img/clients/client-1.png";
-import client02 from "../img/clients/client-2.jpg";
-import client03 from "../img/clients/client-3.jpg";
-import client04 from "../img/clients/client-4.jpg";
-import client05 from "../img/clients/client-5.jpg";
-import client06 from "../img/clients/client-6.jpg";
-import client07 from "../img/clients/client-7.jpg";
-import client08 from "../img/clients/client-8.jpg";
-import client09 from "../img/clients/client-9.jpg";
-import client10 from "../img/clients/client-10.jpg";
-import client11 from "../img/clients/client-11.jpg";
-import client12 from "../img/clients/client-12.jpg";
-import client13 from "../img/clients/client-13.jpg";
-import client14 from "../img/clients/client-14.jpg";
-import client15 from "../img/clients/client-15.jpg";
-import client16 from "../img/clients/client-16.jpg";
-import client17 from "../img/clients/client-17.jpg";
-import client18 from "../img/clients/client-18.jpg";
-import client19 from "../img/clients/client-19.jpg";
+const Skills = () => {
+  // Single source of truth — grouped to mirror the CV's Technical Expertise
+  const skillCategories = skillGroups;
 
-const ClientList = () => {
   return (
-    <>
-      <section id="clients" className="clients">
-        <div className="container" data-aos="zoom-out">
-          <div className="mt-5 section-header">
-            <h2>Our Clients</h2>
-          </div>
-          <div className="clients-slider swiper">
-            <Swiper
-              modules={[Autoplay]}
-              //spaceBetween={15}
-              //slidesPerView={6}
-              autoplay={{
-                delay: 1500,
-                disableOnInteraction: true,
-              }}
-              breakpoints={{
-                640: {
-                  slidesPerView: 3,
-                  spaceBetween: 5,
-                },
-                768: {
-                  slidesPerView: 4,
-                  spaceBetween: 5,
-                },
-                1024: {
-                  slidesPerView: 6,
-                  spaceBetween: 10,
-                },
-              }}
-              onSwiper={(swiper: any) => console.log(swiper)}
-              onSlideChange={() => console.log("slide change")}
-            >
-              <SwiperSlide>
-                <img src={client01} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client02} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client03} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client04} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client05} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client06} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client07} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client08} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client09} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client10} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client11} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client12} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client13} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client14} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client15} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client16} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client17} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client18} className="img-fluid" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={client19} className="img-fluid" alt="" />
-              </SwiperSlide>
-            </Swiper>
+    <section id="skills" className="skills-section">
+      <div className="container" data-aos="fade-up">
+        <div className="section-header">
+          <span className="section-subtitle">What I Work With</span>
+          <h2>Skills & Technologies</h2>
+        </div>
+
+        <div className="row g-4 mb-5">
+          {skillCategories.map((cat, idx) => (
+            <div key={idx} className="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay={idx * 100}>
+              <div className="skill-category-card">
+                <div className="skill-category-icon">
+                  <i className={`bi ${cat.icon}`} />
+                </div>
+                <h4>{cat.title}</h4>
+                <div className="skill-tags">
+                  {cat.skills.map((skill, i) => (
+                    <span key={i} className="skill-tag">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="tech-marquee" data-aos="fade-up" data-aos-delay="200">
+          <h4 className="text-center mb-4" style={{color: 'var(--dark-2)'}}>Tech Stack</h4>
+          <div className="tech-marquee-container">
+            <div className="tech-marquee-track">
+              {techStackDetails.map((tech, idx) => (
+                <div key={idx} className="tech-stack-item">
+                  <i className={tech.iconClass} />
+                  <span>{tech.name}</span>
+                </div>
+              ))}
+              {techStackDetails.map((tech, idx) => (
+                <div key={`dup-${idx}`} className="tech-stack-item">
+                  <i className={tech.iconClass} />
+                  <span>{tech.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
-export default ClientList;
+export default Skills;

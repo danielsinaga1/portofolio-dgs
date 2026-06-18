@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a0d00"/>
+      <stop offset="100%" stop-color="#c94b00"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" fill="url(#bg1)"/>
+  <rect width="600" height="360" fill="none" opacity="0.15">
+    <animate attributeName="opacity" values="0.1;0.2;0.1" dur="4s" repeatCount="indefinite"/>
+  </rect>
+  <!-- Grid -->
+  <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+    <line x1="0" y1="72" x2="600" y2="72"/><line x1="0" y1="144" x2="600" y2="144"/>
+    <line x1="0" y1="216" x2="600" y2="216"/><line x1="0" y1="288" x2="600" y2="288"/>
+    <line x1="120" y1="0" x2="120" y2="360"/><line x1="240" y1="0" x2="240" y2="360"/>
+    <line x1="360" y1="0" x2="360" y2="360"/><line x1="480" y1="0" x2="480" y2="360"/>
+  </g>
+  <!-- Glow -->
+  <circle cx="500" cy="80" r="140" fill="rgba(255,100,30,0.18)"/>
+  <circle cx="100" cy="300" r="90" fill="rgba(255,255,255,0.04)"/>
+  <!-- Top bar -->
+  <rect width="600" height="44" fill="rgba(0,0,0,0.35)"/>
+  <circle cx="22" cy="22" r="8" fill="rgba(255,100,30,0.9)"/>
+  <rect x="44" y="16" width="100" height="12" rx="4" fill="rgba(255,255,255,0.25)"/>
+  <rect x="520" y="12" width="60" height="20" rx="10" fill="rgba(255,100,30,0.7)"/>
+  <!-- Phone mockup -->
+  <rect x="220" y="70" width="160" height="200" rx="22" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+  <rect x="232" y="86" width="136" height="168" rx="4" fill="rgba(0,0,0,0.3)"/>
+  <rect x="246" y="100" width="108" height="140" rx="3" fill="rgba(255,100,30,0.15)"/>
+  <!-- Notification card -->
+  <rect x="240" y="108" width="120" height="52" rx="10" fill="rgba(255,100,30,0.85)"/>
+  <rect x="248" y="118" width="60" height="8" rx="3" fill="rgba(255,255,255,0.8)"/>
+  <rect x="248" y="132" width="90" height="7" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <rect x="248" y="145" width="75" height="7" rx="3" fill="rgba(255,255,255,0.4)"/>
+  <!-- Bell icon outline -->
+  <ellipse cx="357" cy="108" rx="18" ry="18" fill="rgba(255,100,30,0.9)"/>
+  <path d="M351 107 Q351 102 357 102 Q363 102 363 107 L364 113 L366 115 L348 115 L350 113 Z" fill="white" opacity="0.9"/>
+  <ellipse cx="357" cy="116" rx="3" ry="3" fill="white" opacity="0.9"/>
+  <!-- Sidebar blocks -->
+  <rect x="30" y="70" width="170" height="40" rx="8" fill="rgba(255,255,255,0.07)"/>
+  <rect x="30" y="120" width="170" height="30" rx="6" fill="rgba(255,255,255,0.05)"/>
+  <rect x="30" y="160" width="170" height="30" rx="6" fill="rgba(255,255,255,0.05)"/>
+  <rect x="30" y="200" width="120" height="30" rx="6" fill="rgba(255,255,255,0.05)"/>
+  <!-- Footer label -->
+  <rect x="0" y="300" width="600" height="60" fill="rgba(0,0,0,0.5)"/>
+  <text x="300" y="325" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="white" text-anchor="middle">Push Notification FCM Android</text>
+  <text x="300" y="348" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,150,80,0.9)" text-anchor="middle">Java Spring Boot  ·  Firebase Cloud Messaging</text>
+</svg>

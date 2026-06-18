@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a0030"/>
+      <stop offset="100%" stop-color="#6c3483"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" fill="url(#bg4)"/>
+  <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+    <line x1="0" y1="72" x2="600" y2="72"/><line x1="0" y1="144" x2="600" y2="144"/>
+    <line x1="0" y1="216" x2="600" y2="216"/><line x1="0" y1="288" x2="600" y2="288"/>
+    <line x1="120" y1="0" x2="120" y2="360"/><line x1="240" y1="0" x2="240" y2="360"/>
+    <line x1="360" y1="0" x2="360" y2="360"/><line x1="480" y1="0" x2="480" y2="360"/>
+  </g>
+  <circle cx="480" cy="80" r="150" fill="rgba(130,60,200,0.18)"/>
+  <!-- Top bar -->
+  <rect width="600" height="44" fill="rgba(0,0,0,0.4)"/>
+  <circle cx="22" cy="22" r="8" fill="rgba(140,60,200,0.9)"/>
+  <rect x="44" y="16" width="120" height="12" rx="4" fill="rgba(255,255,255,0.25)"/>
+  <rect x="490" y="12" width="80" height="20" rx="4" fill="rgba(140,60,200,0.6)"/>
+  <!-- Table header -->
+  <rect x="20" y="58" width="560" height="36" rx="4" fill="rgba(130,60,200,0.4)"/>
+  <rect x="28" y="68" width="80" height="12" rx="3" fill="rgba(255,255,255,0.6)"/>
+  <rect x="160" y="68" width="100" height="12" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <rect x="320" y="68" width="80" height="12" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <rect x="460" y="68" width="80" height="12" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <!-- Table rows -->
+  <rect x="20" y="96" width="560" height="32" rx="3" fill="rgba(255,255,255,0.04)"/>
+  <rect x="28" y="106" width="70" height="10" rx="3" fill="rgba(255,255,255,0.35)"/>
+  <rect x="160" y="106" width="85" height="10" rx="3" fill="rgba(255,255,255,0.3)"/>
+  <rect x="320" y="104" width="60" height="12" rx="8" fill="rgba(80,200,180,0.4)"/>
+  <rect x="460" y="104" width="70" height="12" rx="8" fill="rgba(130,60,200,0.5)"/>
+  <rect x="20" y="132" width="560" height="32" rx="3" fill="rgba(255,255,255,0.02)"/>
+  <rect x="28" y="142" width="80" height="10" rx="3" fill="rgba(255,255,255,0.35)"/>
+  <rect x="160" y="142" width="90" height="10" rx="3" fill="rgba(255,255,255,0.3)"/>
+  <rect x="320" y="140" width="68" height="12" rx="8" fill="rgba(255,200,50,0.4)"/>
+  <rect x="460" y="140" width="55" height="12" rx="8" fill="rgba(80,200,180,0.5)"/>
+  <rect x="20" y="168" width="560" height="32" rx="3" fill="rgba(255,255,255,0.04)"/>
+  <rect x="28" y="178" width="65" height="10" rx="3" fill="rgba(255,255,255,0.35)"/>
+  <rect x="160" y="178" width="95" height="10" rx="3" fill="rgba(255,255,255,0.3)"/>
+  <rect x="320" y="176" width="55" height="12" rx="8" fill="rgba(255,100,100,0.4)"/>
+  <rect x="460" y="176" width="80" height="12" rx="8" fill="rgba(130,60,200,0.5)"/>
+  <rect x="20" y="204" width="560" height="32" rx="3" fill="rgba(255,255,255,0.02)"/>
+  <rect x="28" y="214" width="75" height="10" rx="3" fill="rgba(255,255,255,0.35)"/>
+  <rect x="160" y="214" width="80" height="10" rx="3" fill="rgba(255,255,255,0.3)"/>
+  <rect x="320" y="212" width="65" height="12" rx="8" fill="rgba(80,200,180,0.4)"/>
+  <rect x="460" y="212" width="65" height="12" rx="8" fill="rgba(255,200,50,0.5)"/>
+  <!-- Flask shapes (decorative) -->
+  <rect x="400" y="248" width="8" height="24" rx="2" fill="rgba(200,100,255,0.5)"/>
+  <polygon points="396,272 412,272 420,295 388,295" fill="rgba(180,80,240,0.4)"/>
+  <rect x="386" y="295" width="36" height="4" rx="2" fill="rgba(200,100,255,0.4)"/>
+  <!-- Small circles (sample vials) -->
+  <circle cx="448" cy="265" r="12" fill="none" stroke="rgba(200,100,255,0.4)" stroke-width="2"/>
+  <circle cx="448" cy="265" r="6" fill="rgba(180,80,240,0.3)"/>
+  <circle cx="474" cy="265" r="12" fill="none" stroke="rgba(200,100,255,0.3)" stroke-width="2"/>
+  <circle cx="474" cy="265" r="6" fill="rgba(80,200,180,0.3)"/>
+  <!-- Footer -->
+  <rect x="0" y="300" width="600" height="60" fill="rgba(0,0,0,0.5)"/>
+  <text x="300" y="325" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="white" text-anchor="middle">Laboratory Information Management System</text>
+  <text x="300" y="348" font-family="Arial,sans-serif" font-size="12" fill="rgba(190,120,255,0.9)" text-anchor="middle">HTML/CSS  ·  JavaScript  ·  PHP</text>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#002b1a"/>
+      <stop offset="100%" stop-color="#00875a"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" fill="url(#bg2)"/>
+  <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+    <line x1="0" y1="72" x2="600" y2="72"/><line x1="0" y1="144" x2="600" y2="144"/>
+    <line x1="0" y1="216" x2="600" y2="216"/><line x1="0" y1="288" x2="600" y2="288"/>
+    <line x1="120" y1="0" x2="120" y2="360"/><line x1="240" y1="0" x2="240" y2="360"/>
+    <line x1="360" y1="0" x2="360" y2="360"/><line x1="480" y1="0" x2="480" y2="360"/>
+  </g>
+  <circle cx="520" cy="70" r="130" fill="rgba(0,200,100,0.12)"/>
+  <circle cx="80" cy="310" r="100" fill="rgba(255,255,255,0.03)"/>
+  <!-- Top bar -->
+  <rect width="600" height="44" fill="rgba(0,0,0,0.35)"/>
+  <circle cx="22" cy="22" r="8" fill="rgba(0,180,90,0.9)"/>
+  <rect x="44" y="16" width="110" height="12" rx="4" fill="rgba(255,255,255,0.25)"/>
+  <rect x="510" y="12" width="70" height="20" rx="10" fill="rgba(0,180,90,0.7)"/>
+  <!-- Credit card -->
+  <rect x="160" y="80" width="280" height="170" rx="18" fill="rgba(0,160,80,0.5)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <!-- Chip -->
+  <rect x="190" y="110" width="50" height="38" rx="6" fill="rgba(255,220,80,0.8)" stroke="rgba(200,170,0,0.5)" stroke-width="1"/>
+  <line x1="215" y1="110" x2="215" y2="148" stroke="rgba(200,160,0,0.5)" stroke-width="1"/>
+  <line x1="190" y1="129" x2="240" y2="129" stroke="rgba(200,160,0,0.5)" stroke-width="1"/>
+  <!-- Contactless icon -->
+  <path d="M280 118 Q295 129 280 140" stroke="rgba(255,255,255,0.7)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M288 112 Q307 129 288 146" stroke="rgba(255,255,255,0.5)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M296 106 Q319 129 296 152" stroke="rgba(255,255,255,0.3)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Card number -->
+  <rect x="190" y="162" width="30" height="10" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <rect x="228" y="162" width="30" height="10" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <rect x="266" y="162" width="30" height="10" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <rect x="304" y="162" width="30" height="10" rx="3" fill="rgba(255,255,255,0.7)"/>
+  <!-- Cardholder name -->
+  <rect x="190" y="188" width="100" height="8" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <!-- Bank brand circles -->
+  <circle cx="382" cy="185" r="18" fill="rgba(255,50,50,0.6)"/>
+  <circle cx="404" cy="185" r="18" fill="rgba(255,150,0,0.6)"/>
+  <!-- Sidebar stats -->
+  <rect x="30" y="68" width="110" height="50" rx="10" fill="rgba(255,255,255,0.07)"/>
+  <rect x="38" y="78" width="60" height="8" rx="3" fill="rgba(0,220,100,0.7)"/>
+  <rect x="38" y="94" width="90" height="12" rx="3" fill="rgba(255,255,255,0.4)"/>
+  <rect x="30" y="130" width="110" height="50" rx="10" fill="rgba(255,255,255,0.07)"/>
+  <rect x="38" y="140" width="70" height="8" rx="3" fill="rgba(0,220,100,0.5)"/>
+  <rect x="38" y="156" width="85" height="12" rx="3" fill="rgba(255,255,255,0.3)"/>
+  <!-- Footer -->
+  <rect x="0" y="300" width="600" height="60" fill="rgba(0,0,0,0.5)"/>
+  <text x="300" y="325" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="white" text-anchor="middle">Payment Gateway Service (EDC)</text>
+  <text x="300" y="348" font-family="Arial,sans-serif" font-size="12" fill="rgba(80,220,140,0.9)" text-anchor="middle">Angular  ·  Java Spring Boot  ·  PostgreSQL</text>
+</svg>

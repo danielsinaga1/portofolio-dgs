@@ -1,86 +1,113 @@
-import React, { useEffect, useCallback, useMemo } from "react";
-import { Link, useLocation } from "react-router-dom";
-import logo from "../img/logo-tera.png";
+import React, { useEffect, useCallback, useMemo, useState } from "react";
+import { personalDetails, logos } from "./Details";
 
 const InnerHeader: React.FC = () => {
-  const location = useLocation();
-  
-  // Memoize the current path to avoid recalculating on every render
-  const currentPath = useMemo(() => {
-    return location.pathname.split("/")[1] || "";
-  }, [location.pathname]);
+  const [activeSection, setActiveSection] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { name } = personalDetails;
 
   const toTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Sticky header effect
   useEffect(() => {
     const handleScroll = () => {
       const header = document.querySelector("#header");
       if (header) {
         header.classList.toggle("sticked", window.scrollY > 80);
       }
+
+      const sections = document.querySelectorAll("section[id]");
+      let current = "";
+      sections.forEach((section) => {
+        const el = section as HTMLElement;
+        const sectionTop = el.offsetTop - 100;
+        if (window.scrollY >= sectionTop) {
+          current = el.getAttribute("id") || "";
+        }
+      });
+      setActiveSection(current);
     };
 
     document.addEventListener("scroll", handleScroll, { passive: true });
-    
-    return () => {
-      document.removeEventListener("scroll", handleScroll);
-    };
+    return () => document.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Mobile menu toggle
   const handleMobileMenu = useCallback((event: React.MouseEvent) => {
     event.preventDefault();
-    
     const mobileNavShow = document.querySelector(".mobile-nav-show");
     const mobileNavHide = document.querySelector(".mobile-nav-hide");
     const body = document.querySelector("body");
-    
     if (mobileNavShow && mobileNavHide && body) {
       mobileNavShow.classList.toggle("d-none");
       mobileNavHide.classList.toggle("d-none");
       body.classList.toggle("mobile-nav-active");
+      setMenuOpen(body.classList.contains("mobile-nav-active"));
     }
   }, []);
 
-  // Navigation items configuration
   const navItems = useMemo(() => [
-    { path: "/", label: "Home", key: "" },
-    { path: "/services", label: "Services", key: "services" },
-    { path: "/careers", label: "Careers", key: "careers" },
-    { path: "/contact", label: "Contact Us", key: "contact" }
+    { href: "#hero", label: "Home", key: "hero" },
+    { href: "#skills", label: "Skills", key: "skills" },
+    { href: "#experience", label: "Experience", key: "experience" },
+    { href: "#projects", label: "Projects", key: "projects" },
+    { href: "#contact", label: "Contact", key: "contact" }
   ], []);
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const body = document.querySelector("body");
+    const mobileNavShow = document.querySelector(".mobile-nav-show");
+    const mobileNavHide = document.querySelector(".mobile-nav-hide");
+    if (body?.classList.contains("mobile-nav-active") && mobileNavShow && mobileNavHide) {
+      mobileNavShow.classList.remove("d-none");
+      mobileNavHide.classList.add("d-none");
+      body.classList.remove("mobile-nav-active");
+      setMenuOpen(false);
+    }
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
 
   return (
     <header id="header" className="header fixed-top">
       <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <Link to="/" className="logo" onClick={toTop}>
-          <img
-            src={logo}
-            alt="PT Teknik Nusantara Kaltim"
-            title="PT Teknik Nusantara Kaltim"
-          />
-        </Link>
+        <a href="#hero" className="logo" onClick={toTop} aria-label={`${name} — back to top`}>
+          <img src={logos.logogradient} alt={name} className="logo-img" />
+        </a>
         
-        <span onClick={handleMobileMenu}>  
+        <button
+          type="button"
+          className="mobile-nav-toggle-btn"
+          onClick={handleMobileMenu}
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
+          aria-controls="navbar"
+        >
           <i className="mobile-nav-toggle mobile-nav-show bi bi-list" />
           <i className="mobile-nav-toggle mobile-nav-hide d-none bi bi-x" />
-        </span>
+        </button>
         
         <nav id="navbar" className="navbar">
-          <ul onClick={handleMobileMenu}>
-            {navItems.map(({ path, label, key }) => (
+          <ul>
+            {navItems.map(({ href, label, key }) => (
               <li key={key}>
-                <Link 
-                  to={path} 
-                  className={currentPath === key ? "active" : ""}
+                <a 
+                  href={href}
+                  className={activeSection === key ? "active" : ""}
+                  onClick={(e) => handleNavClick(e, href)}
                 >
                   {label}
-                </Link>
+                </a>
               </li>
             ))}
+            <li>
+              <a href="#contact" className="nav-cta-btn" onClick={(e) => handleNavClick(e, "#contact")}>
+                Hire Me
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e2e"/>
+      <stop offset="100%" stop-color="#155bd5"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" fill="url(#bg3)"/>
+  <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+    <line x1="0" y1="72" x2="600" y2="72"/><line x1="0" y1="144" x2="600" y2="144"/>
+    <line x1="0" y1="216" x2="600" y2="216"/><line x1="0" y1="288" x2="600" y2="288"/>
+    <line x1="120" y1="0" x2="120" y2="360"/><line x1="240" y1="0" x2="240" y2="360"/>
+    <line x1="360" y1="0" x2="360" y2="360"/><line x1="480" y1="0" x2="480" y2="360"/>
+  </g>
+  <circle cx="500" cy="60" r="140" fill="rgba(30,80,220,0.18)"/>
+  <!-- Top bar -->
+  <rect width="600" height="44" fill="rgba(0,0,0,0.4)"/>
+  <circle cx="22" cy="22" r="8" fill="rgba(30,100,220,0.9)"/>
+  <rect x="44" y="16" width="130" height="12" rx="4" fill="rgba(255,255,255,0.25)"/>
+  <rect x="480" y="12" width="80" height="20" rx="4" fill="rgba(30,100,220,0.6)"/>
+  <!-- Dashboard sidebar -->
+  <rect x="20" y="58" width="130" height="240" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <rect x="32" y="72" width="106" height="28" rx="5" fill="rgba(30,100,220,0.5)"/>
+  <rect x="32" y="110" width="106" height="22" rx="5" fill="rgba(255,255,255,0.07)"/>
+  <rect x="32" y="140" width="106" height="22" rx="5" fill="rgba(255,255,255,0.07)"/>
+  <rect x="32" y="170" width="106" height="22" rx="5" fill="rgba(255,255,255,0.07)"/>
+  <!-- Main content area -->
+  <rect x="165" y="58" width="415" height="110" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <!-- KPI cards -->
+  <rect x="178" y="68" width="88" height="90" rx="8" fill="rgba(30,100,220,0.3)"/>
+  <rect x="186" y="80" width="50" height="8" rx="3" fill="rgba(255,255,255,0.4)"/>
+  <text x="222" y="120" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="rgba(100,180,255,0.9)" text-anchor="middle">42</text>
+  <rect x="278" y="68" width="88" height="90" rx="8" fill="rgba(255,100,100,0.2)"/>
+  <rect x="286" y="80" width="60" height="8" rx="3" fill="rgba(255,255,255,0.4)"/>
+  <text x="322" y="120" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="rgba(255,120,120,0.9)" text-anchor="middle">8</text>
+  <rect x="378" y="68" width="88" height="90" rx="8" fill="rgba(50,200,150,0.2)"/>
+  <rect x="386" y="80" width="55" height="8" rx="3" fill="rgba(255,255,255,0.4)"/>
+  <text x="422" y="120" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="rgba(80,220,160,0.9)" text-anchor="middle">34</text>
+  <rect x="478" y="68" width="88" height="90" rx="8" fill="rgba(200,150,50,0.2)"/>
+  <rect x="486" y="80" width="65" height="8" rx="3" fill="rgba(255,255,255,0.4)"/>
+  <text x="522" y="120" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="rgba(230,180,80,0.9)" text-anchor="middle">95%</text>
+  <!-- Chart area -->
+  <rect x="165" y="178" width="200" height="120" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <!-- Bar chart -->
+  <rect x="185" y="250" width="20" height="30" rx="3" fill="rgba(30,100,220,0.6)"/>
+  <rect x="210" y="230" width="20" height="50" rx="3" fill="rgba(30,100,220,0.7)"/>
+  <rect x="235" y="215" width="20" height="65" rx="3" fill="rgba(30,100,220,0.8)"/>
+  <rect x="260" y="238" width="20" height="42" rx="3" fill="rgba(30,100,220,0.6)"/>
+  <rect x="285" y="225" width="20" height="55" rx="3" fill="rgba(30,100,220,0.9)"/>
+  <rect x="310" y="240" width="20" height="40" rx="3" fill="rgba(30,100,220,0.6)"/>
+  <rect x="335" y="218" width="20" height="62" rx="3" fill="rgba(80,140,255,0.8)"/>
+  <!-- Line chart -->
+  <rect x="375" y="178" width="200" height="120" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <polyline points="390,270 410,252 430,260 450,235 470,242 490,225 510,238 530,218 550,230 565,215" fill="none" stroke="rgba(80,200,255,0.8)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="390,280 410,268 430,272 450,255 470,265 490,250 510,258 530,244 550,255 565,245" fill="none" stroke="rgba(255,100,100,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Footer -->
+  <rect x="0" y="300" width="600" height="60" fill="rgba(0,0,0,0.5)"/>
+  <text x="300" y="325" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="white" text-anchor="middle">Incident Report Monitoring System</text>
+  <text x="300" y="348" font-family="Arial,sans-serif" font-size="12" fill="rgba(100,160,255,0.9)" text-anchor="middle">React  ·  Java Spring Boot  ·  MySQL</text>
+</svg>
