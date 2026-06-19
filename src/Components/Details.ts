@@ -6,11 +6,9 @@ import logo from "../assets/logo2.svg";
 import profile from "../assets/profile-photos-daniel.png"
 // Project Images
 import projectImage1 from "../assets/projects/project1.png";
-import projectImage2 from "../assets/projects/project2.svg";
 import projectImage3 from "../assets/projects/project3.png";
 import projectImage4 from "../assets/projects/project4.jpg";
 import projectImage5 from "../assets/projects/project5.png";
-import projectImage6 from "../assets/projects/project6.svg";
 import projectImage7 from "../assets/projects/project7.png";
 import projectImage8 from "../assets/projects/project8.png";
 
