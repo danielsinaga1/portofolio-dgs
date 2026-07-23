@@ -28,7 +28,7 @@ export const personalDetails = {
   img: profile,
   location: "Bontang, East Kalimantan, Indonesia",
   // Full professional summary (used in About / longer contexts)
-  about: `Senior Software Developer with 7+ years of experience engineering high-availability enterprise solutions across the industrial, fintech, and government sectors. Proven expertise in leading digital transformation initiatives, architecting scalable systems, and optimizing legacy workflows. Adept at bridging complex business requirements with robust technical implementations, consistently delivering improvements in operational efficiency and data integrity.`,
+  about: `Senior Software Engineer with 8 years of experience delivering high-availability enterprise solutions across the industrial, fintech, and government sectors. Proven track record leading digital transformation initiatives — including re-architecting monolithic SaaS platforms into event-driven microservices and integrating AI (RAG) chatbots — and bridging complex business requirements with robust, scalable implementations that measurably improve operational efficiency and data integrity.`,
   // One-line value proposition for the Hero (scannable in <5s)
   pitch: `I deliver high-performance, resilient enterprise solutions tailored to the unique requirements of the industrial, fintech, and government sectors. My focus is on creating robust, scalable, and secure applications that drive business growth.`,
 };
@@ -68,10 +68,12 @@ export const workDetails = [
     Type: "Full Time",
     Duration: "May 2019 - Present",
     Highlights: [
-      "Spearheaded end-to-end digitization of ISO Audit reporting (9001, 14001, 45001), eliminating manual HIRACOP documentation errors.",
-      "Architected and deployed the Incident Report Monitoring System (IRMS) — 100% improvement in incident tracking efficiency.",
-      "Led the development lifecycle of the Laboratory Information Management System (LIMS), improving inventory accuracy.",
-      "Manage the full corporate web presence with 99.9% uptime and rigorous security patching.",
+      "Re-architected the in-house SaaS platforms (IRMS & LIMS) from a monolith into event-driven microservices, using Apache Kafka for asynchronous inter-service messaging and Redis for caching and event streaming — improving deployment frequency, fault isolation, and horizontal scalability across departments.",
+      "Built and embedded a Retrieval-Augmented Generation (RAG) chatbot directly within the SaaS, enabling staff to query laboratory results, incident records, and SOPs in natural language and sharply reducing information-retrieval time.",
+      "Spearheaded end-to-end digitization of ISO Audit reporting (9001, 14001, 45001) via an Integrated Management System, eliminating manual HIRACOP documentation errors and accelerating audit cycles.",
+      "Architected and deployed the Incident Report Monitoring System (IRMS) as an event-driven microservices SaaS, delivering a 100% improvement in incident-tracking efficiency through automated workflows and real-time visualization.",
+      "Led the development lifecycle of the Laboratory Information Management System (LIMS) SaaS, streamlining chemical sample analysis and improving inventory accuracy for the Laboratory Department.",
+      "Manage the full lifecycle of the corporate web presence — 99.9% uptime, rigorous security patching, and optimal performance.",
     ],
   },
   {
