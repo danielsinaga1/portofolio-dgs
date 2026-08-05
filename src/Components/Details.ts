@@ -22,7 +22,7 @@ export const logos = {
 export const personalDetails = {
   name: "Daniel Giovanni Sinaga",
   // Primary headline — kept generic-but-senior
-  tagline: "Senior Software Developer",
+  tagline: "Senior Software Engineer",
   // More specific positioning shown under the headline (keyword-rich for recruiters)
   specialty: "Full-Stack Engineer specializing in Java Spring Boot and React",
   img: profile,
@@ -50,17 +50,7 @@ export const socialMediaUrl = {
 
 // Enter your Work Experience here
 export const workDetails = [
-  {
-    Position: "Independent Software Consultant",
-    Company: `Remote / Freelance`,
-    Location: "Remote",
-    Type: "Freelance",
-    Duration: "Aug 2025 - Present",
-    Highlights: [
-      "Public Sector: Built a scalable City Sanitation Management Application for the Bontang City Government, enabling data-driven public health monitoring.",
-      "Digital Presence: Deployed high-performance corporate landing pages (e.g. PT RAAT) focused on SEO, lead generation, and conversion architecture.",
-    ],
-  },
+  
   {
     Position: "Software & Development Officer",
     Company: `PT Kaltim Parna Industri`,
@@ -68,12 +58,10 @@ export const workDetails = [
     Type: "Full Time",
     Duration: "May 2019 - Present",
     Highlights: [
-      "Re-architected the in-house SaaS platforms (IRMS & LIMS) from a monolith into event-driven microservices, using Apache Kafka for asynchronous inter-service messaging and Redis for caching and event streaming — improving deployment frequency, fault isolation, and horizontal scalability across departments.",
-      "Built and embedded a Retrieval-Augmented Generation (RAG) chatbot directly within the SaaS, enabling staff to query laboratory results, incident records, and SOPs in natural language and sharply reducing information-retrieval time.",
-      "Spearheaded end-to-end digitization of ISO Audit reporting (9001, 14001, 45001) via an Integrated Management System, eliminating manual HIRACOP documentation errors and accelerating audit cycles.",
-      "Architected and deployed the Incident Report Monitoring System (IRMS) as an event-driven microservices SaaS, delivering a 100% improvement in incident-tracking efficiency through automated workflows and real-time visualization.",
-      "Led the development lifecycle of the Laboratory Information Management System (LIMS) SaaS, streamlining chemical sample analysis and improving inventory accuracy for the Laboratory Department.",
-      "Manage the full lifecycle of the corporate web presence — 99.9% uptime, rigorous security patching, and optimal performance.",
+      "Digital Transformation: Spearheaded end-to-end digitization of ISO Audit reporting (9001, 14001, 45001) through an Integrated Management System (IMS), eliminating manual HIRACOP documentation errors and significantly accelerating audit cycle turnaround across departments.",
+      "System Architecture: Led the re-architecture of in-house SaaS platforms (IRMS & LIMS) from monolithic to microservices architecture, improving deployment frequency, fault isolation, and horizontal scalability across departments. Engineered a Retrieval-Augmented Generation (RAG) pipeline from the ground up, powering an Agentic AI assistant — built with LangChain and LangGraph — that retrieves guidance from company SOPs and orchestrates multi-step workflows to help users resolve obstacles independently.",
+      "Product Leadership: Owned the full development lifecycle of the Laboratory Information Management System (LIMS), streamlining chemical sample analysis workflows and significantly improving inventory accuracy for the Laboratory Department. Architected and deployed the Incident Report Monitoring System (IRMS), delivering a 100% improvement in incident-tracking efficiency through automated workflows and real-time visualization dashboards.",
+      "Corporate Web Operations: Built the corporate landing page from the ground up, owning the full lifecycle including SEO optimization, performance tuning, and ongoing security patching to ensure a fast, secure, and discoverable web presence.",
     ],
   },
   {
@@ -83,8 +71,8 @@ export const workDetails = [
     Type: "Contract",
     Duration: "Nov 2018 - May 2019",
     Highlights: [
-      "Engineered mission-critical secure payment gateway endpoints (EDC, Payroll) with 99.9% transaction reliability for PT Bank Danamon.",
-      "Facilitated third-party API integrations for high-volume financial transactions under enterprise banking security standards.",
+      "Fintech Backend Engineering: Developed an admin configuration module (Java Spring Boot) for managing per-customer minimum balance thresholds and penalty fees, with data retrieval via CIF, supporting fee enforcement across Cash Management services (bulk payroll, mass transfer, virtual account collection).",
+      "Cash Management Platform: Built a CRUD REST API and Angular-based admin dashboard for transaction data management, enabling CIF-based transaction queries for the middleware team with data enriched from existing internal APIs. Collaborated with the team on versioned schema management for the platform's database layer, supporting corporate treasury operations including bulk payroll, mass fund transfer, and balance/statement inquiry.",
     ],
   },
   {
@@ -94,7 +82,23 @@ export const workDetails = [
     Type: "Internship",
     Duration: "Jun 2017 - Aug 2017",
     Highlights: [
-      "Implemented Firebase Cloud Messaging (FCM) services for the Womantalk platform, enhancing user engagement through real-time notifications.",
+      "Real-time Infrastructure: Integrated Firebase Cloud Messaging (FCM) into the Womantalk platform, implementing real-time push notification services to support user engagement features.",
+    ],
+  },
+
+  {
+    Position: "Independent Software Consultant",
+    Company: `Remote / Freelance`,
+    Location: "Remote",
+    Type: "Freelance",
+    Duration: "Aug 2025 - Present",
+    Highlights: [
+      "Public Sector Digitalization — 2nd Place, Bontang Innovation Award : Designed and developed a City Sanitation Management System as a data-driven innovation for the Bontang City Government, for advancing public health monitoring through digital transformation.",
+      "Digital Presence Optimization — Freelance / Client Projects : Architected and deployed high-conversion corporate landing pages for clients including PT RAAT, engineering SEO strategy, lead-generation funnels, and conversion-optimized UX architecture.",
+      "Retail & Loyalty Platform (PT Threebond): Built a Point of Sales system with an integrated QR-code loyalty engine. The platform generates a unique QR code per item, which is affixed to the product before shipment; on delivery the customer scans the code, is routed to an authenticated redemption portal, and converts accumulated points into product discounts — closing the loop between distribution, customer verification, and retention.",
+      "Digital Payments & PPOB Platform: Developed a top-up marketplace covering game vouchers and merchant services such as mobile credit, data packages, and internet/WiFi bill payments. Integrated Midtrans and Xendit payment gateways with webhook-driven callback handling so transactions are settled and products delivered automatically, removing manual confirmation and reconciliation from the fulfilment flow.",
+      "E-Procurement for Healthcare: Delivered an E-Procurement application for a hospital institution to support day-to-day procurement operations — digitizing vendor management, purchase requisitions, quotation comparison, and multi-level approval workflows, resulting in faster procurement cycles and a fully traceable audit trail.",
+      "Document & Archive Management System: Engineered a file-manager style archival application providing centralized, searchable document storage together with automated generation and numbering of incoming and outgoing correspondence, replacing manual letter logging and safeguarding institutional records.",
     ],
   },
 ];
