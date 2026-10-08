@@ -1,90 +1,23 @@
-import React from "react";
-import { workDetails, eduDetails, heroStats } from "./Details";
+import { workDetails, eduDetails, personalDetails } from "./Details";
+import SectionHeading from "./SectionHeading";
+import Icon from "./Icon";
 
-const Experience = () => {
-  return (
-    <section id="experience" className="experience-section">
-      <div className="container" data-aos="fade-up">
-        <div className="section-header">
-          <span className="section-subtitle">My Journey</span>
-          <h2>Experience & Education</h2>
-        </div>
-
-        <div className="row g-5">
-          <div className="col-lg-7" data-aos="fade-right" data-aos-delay="100">
-            <h3 className="timeline-title">
-              <i className="bi bi-briefcase me-2" />Work Experience
-            </h3>
-            <div className="timeline">
-              {workDetails.map((work, idx) => (
-                <div key={idx} className="timeline-item" data-aos="fade-up" data-aos-delay={idx * 100}>
-                  <div className="timeline-dot" />
-                  <div className="timeline-content">
-                    <div className="d-flex justify-content-between align-items-start flex-wrap">
-                      <div>
-                        <h4>{work.Position}</h4>
-                        <h5 className="company-name">{work.Company}</h5>
-                      </div>
-                      <span className={`badge-type ${work.Type.toLowerCase().replace(' ', '-')}`}>
-                        {work.Type}
-                      </span>
-                    </div>
-                    <div className="timeline-meta">
-                      <span><i className="bi bi-geo-alt me-1" />{work.Location}</span>
-                      <span><i className="bi bi-calendar3 me-1" />{work.Duration}</span>
-                    </div>
-                    {work.Highlights && work.Highlights.length > 0 && (
-                      <ul className="timeline-highlights">
-                        {work.Highlights.map((point, i) => (
-                          <li key={i}>{point}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="col-lg-5" data-aos="fade-left" data-aos-delay="200">
-            <h3 className="timeline-title">
-              <i className="bi bi-mortarboard me-2" />Education
-            </h3>
-            <div className="timeline">
-              {eduDetails.map((edu, idx) => (
-                <div key={idx} className="timeline-item" data-aos="fade-up" data-aos-delay={idx * 100}>
-                  <div className="timeline-dot education" />
-                  <div className="timeline-content">
-                    <h4>{edu.Position}</h4>
-                    <h5 className="company-name">{edu.Company}</h5>
-                    <div className="timeline-meta">
-                      <span><i className="bi bi-geo-alt me-1" />{edu.Location}</span>
-                      <span><i className="bi bi-calendar3 me-1" />{edu.Duration}</span>
-                    </div>
-                    <span className={`badge-type graduated`}>{edu.Type}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="stats-card mt-4" data-aos="zoom-in" data-aos-delay="300">
-              <h4>Quick Stats</h4>
-              <div className="row g-3">
-                {heroStats.map((stat, idx) => (
-                  <div key={idx} className="col-6">
-                    <div className="stat-item">
-                      <span className="stat-number">{stat.value}</span>
-                      <span className="stat-label">{stat.label}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Experience;
+export default function Experience() {
+  return <section id="experience" className="journey-section"><div className="container">
+    <SectionHeading number="03" eyebrow="BACKGROUND" title="Experience & education." description="Eight years of building software across enterprise, banking, and public-sector teams." />
+    <div className="journey-grid">
+      <div className="career-list">{workDetails.map((work, index) => <article className="career-item" key={work.Company}>
+        <span className={`career-dot${index === 0 ? " is-current" : ""}`} aria-hidden="true" />
+        <div className="career-item-top"><span className="career-date">{work.Duration}</span><span className={`employment-tag ${work.Type === "Full Time" ? "is-current" : ""}`}>{work.Type}</span></div>
+        <h3>{work.Position}</h3><p className="career-company">{work.Company}<span> / {work.Location}</span></p>
+        <p className="career-highlight">{work.Highlights[0]}</p>
+        {work.Highlights.length > 1 && <details className="career-details"><summary>More about this role <Icon name="plus" /></summary><ul>{work.Highlights.slice(1).map(point => <li key={point}>{point}</li>)}</ul></details>}
+      </article>)}</div>
+      <aside className="journey-aside">
+        <div className="about-panel"><span className="section-eyebrow">ABOUT DANIEL</span><h3>From requirements<br />to reliable systems.</h3><p>{personalDetails.about}</p><div className="about-location"><Icon name="pin" /><span>{personalDetails.location}</span></div></div>
+        <div className="education-panel"><span className="panel-label"><Icon name="education" />EDUCATION</span>{eduDetails.map(education => <div key={education.Company}><h3>{education.Position}</h3><p>{education.Company}</p><span>{education.Duration}</span></div>)}</div>
+        <a className="resume-link" href={`${process.env.PUBLIC_URL || ""}/cv-daniel.pdf`} download="CV-Daniel-Giovanni-Sinaga.pdf"><span><Icon name="download" />Download my CV</span><Icon name="arrow" /></a>
+      </aside>
+    </div>
+  </div></section>;
+}

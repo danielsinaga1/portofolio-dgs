@@ -3,11 +3,12 @@
 import logogradient from "../assets/logo_dgs.png";
 import logo from "../assets/logo2.svg";
 // Profile Image
-import profile from "../assets/profile-photos-daniel.png"
+import profile from "../assets/profile-photos.png"
 // Project Images
 import projectImage1 from "../assets/projects/project1.png";
-import projectImage3 from "../assets/projects/project3.png";
-import projectImage4 from "../assets/projects/project4.jpg";
+import projectImage3 from "../img/IRMS.png";
+import projectImage4 from "../assets/projects/project4.png";
+import projectSanitationImage from "../assets/projects/sanitation-cover.svg";
 import projectImage5 from "../assets/projects/project5.png";
 import projectImage7 from "../assets/projects/project7.png";
 import projectImage8 from "../assets/projects/project8.png";
@@ -281,7 +282,7 @@ export const projectDetails = [
   },
   {
     title: "City Sanitation Management Application",
-    image: projectImage1,
+    image: projectSanitationImage,
     description: `Scalable sanitation management application for the Bontang City Government, enabling data-driven decision-making for public health monitoring.`,
     techstack: "Laravel, React, MySQL",
     previewLink: "https://google.com",

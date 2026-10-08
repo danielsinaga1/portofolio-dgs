@@ -1,60 +1,43 @@
-import React, { useState } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { projectDetails } from "./Details";
 import ProjectModal from "./ProjectModal";
+import SectionHeading from "./SectionHeading";
+import Icon from "./Icon";
+import Technology from "./Technology";
 
 type Project = typeof projectDetails[0];
-
-const Projects = () => {
-  const [selected, setSelected] = useState<Project | null>(null);
-
-  return (
-    <section id="projects" className="projects-section">
-      <div className="container" data-aos="fade-up">
-        <div className="section-header">
-          <span className="section-subtitle">What I've Built</span>
-          <h2>Featured Projects</h2>
-        </div>
-
-        <div className="row g-4">
-          {projectDetails.map((project, idx) => (
-            <div key={idx} className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay={idx * 80}>
-              <div className="project-card" onClick={() => setSelected(project)} style={{ cursor: "pointer" }}>
-                <div className="project-img-wrapper">
-                  <img src={project.image} alt={project.title} className="project-img" />
-                  <div className="project-overlay">
-                    <div className="project-overlay-content">
-                      <span className="project-overlay-label">
-                        <i className="bi bi-eye me-2" />View Details
-                      </span>
-                    </div>
-                  </div>
-                  <span className="project-category-badge">{project.category}</span>
-                </div>
-                <div className="project-info">
-                  <div className="project-meta-row">
-                    <span className="project-year"><i className="bi bi-calendar3 me-1" />{project.year}</span>
-                    <span className="project-role">{project.role}</span>
-                  </div>
-                  <h4>{project.title}</h4>
-                  <p>{project.description}</p>
-                  <div className="project-tech">
-                    {project.techstack.split(", ").map((tech, i) => (
-                      <span key={i} className="tech-badge">{tech}</span>
-                    ))}
-                  </div>
-                  <button className="project-details-btn" onClick={() => setSelected(project)}>
-                    <i className="bi bi-arrow-right-circle me-2" />View Details
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
-    </section>
-  );
+const filters = ["All work", "Enterprise", "FinTech", "Web & Mobile"];
+const categoryGroup = (project: Project) => {
+  if (project.category.includes("FinTech")) return "FinTech";
+  if (["Corporate Website", "Mobile"].includes(project.category)) return "Web & Mobile";
+  return "Enterprise";
 };
 
-export default Projects;
+export default function Projects() {
+  const [selected, setSelected] = useState<Project | null>(null);
+  const [filter, setFilter] = useState("All work");
+  const [showAll, setShowAll] = useState(false);
+  const filtered = useMemo(() => projectDetails.filter(project => filter === "All work" || categoryGroup(project) === filter), [filter]);
+  const visible = showAll ? filtered : filtered.slice(0, 4);
+  const closeProject = useCallback(() => setSelected(null), []);
+
+  return <section id="projects" className="work-section"><div className="container">
+    <SectionHeading number="01" eyebrow="PORTFOLIO" title="Selected projects." description="Enterprise platforms, banking integrations, and public-sector applications. Explore the work, the role, and the technology behind each project." />
+    <div className="work-toolbar"><div className="work-filters" role="group" aria-label="Filter projects">{filters.map(item => <button type="button" key={item} className={filter === item ? "is-active" : ""} aria-pressed={filter === item} onClick={() => { setFilter(item); setShowAll(false); }}>{item}</button>)}</div><span className="work-count" aria-live="polite">{String(filtered.length).padStart(2, "0")} projects</span></div>
+    <div className="work-grid">{visible.map(project => <article className="work-card" key={project.title}>
+      <button type="button" className="work-preview" onClick={() => setSelected(project)} aria-label={`View ${project.title}`}>
+        <span className="project-window">
+          <span className="project-window-toolbar"><span className="project-window-dots" aria-hidden="true"><span /><span /><span /></span><span className="work-category">{project.category}</span></span>
+          <span className="project-window-screen"><img src={project.image} alt={project.title} width="2730" height="1536" loading="lazy" /></span>
+        </span>
+        <span className="work-preview-arrow" aria-hidden="true"><Icon name="arrow" /></span>
+      </button>
+      <div className="work-card-body"><div className="work-meta"><span>{project.role}</span><span>{project.year}</span></div>
+        <h3><button type="button" onClick={() => setSelected(project)}>{project.title}</button></h3><p>{project.description}</p>
+        <div className="work-card-bottom"><div className="work-technologies">{project.techstack.split(", ").map(tech => <Technology key={tech} name={tech} />)}</div><button className="work-detail-link" type="button" onClick={() => setSelected(project)} aria-label={`Read case study for ${project.title}`}><span>View project</span><Icon name="arrow" /></button></div>
+      </div>
+    </article>)}</div>
+    {filtered.length > 4 && <div className="work-more"><button type="button" className="action-button action-secondary" onClick={() => setShowAll(!showAll)}>{showAll ? "Show selected work" : `View all ${filtered.length} projects`}<Icon name={showAll ? "up" : "down"} /></button></div>}
+    <p className="work-footnote"><Icon name="layers" />Select a project to explore its features and implementation.</p>
+  </div><ProjectModal project={selected} onClose={closeProject} /></section>;
+}

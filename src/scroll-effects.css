@@ -1,0 +1,62 @@
+/* Reveal containers keep their layout bounds stable. Their children move,
+   allowing IntersectionObserver to reliably repeat the effect both ways. */
+.scroll-motion-ready .scroll-reveal {
+  --scroll-enter-x: 0px;
+  --scroll-enter-y: 26px;
+  --scroll-enter-scale: 1;
+  opacity: 0;
+  transition-property: opacity, box-shadow, border-color, transform, background;
+  transition-duration: .65s, .25s, .25s, .25s, .25s;
+  transition-timing-function: cubic-bezier(.22, 1, .36, 1);
+  transition-delay: var(--scroll-stagger, 0ms), 0s, 0s, 0s, 0s;
+}
+
+.scroll-motion-ready .scroll-reveal.intro-copy,
+.scroll-motion-ready .scroll-reveal.intro-visual {
+  animation: none;
+}
+
+.scroll-motion-ready .scroll-reveal > :not([aria-hidden="true"]) {
+  translate: var(--scroll-enter-x) var(--scroll-enter-y);
+  scale: var(--scroll-enter-scale);
+  transition-property: translate, scale, transform, box-shadow, border-color, background, color;
+  transition-duration: .75s, .75s, .25s, .25s, .25s, .25s, .25s;
+  transition-timing-function: cubic-bezier(.22, 1, .36, 1);
+  transition-delay: var(--scroll-stagger, 0ms), var(--scroll-stagger, 0ms), 0s, 0s, 0s, 0s, 0s;
+}
+
+.scroll-motion-ready .scroll-reveal--left { --scroll-enter-x: -26px; --scroll-enter-y: 0px; }
+.scroll-motion-ready .scroll-reveal--right { --scroll-enter-x: 26px; --scroll-enter-y: 0px; }
+.scroll-motion-ready .scroll-reveal--zoom { --scroll-enter-y: 14px; --scroll-enter-scale: .965; }
+.scroll-motion-ready[data-scroll-direction="up"] .scroll-reveal--rise { --scroll-enter-y: -26px; }
+.scroll-motion-ready .scroll-reveal--visible { opacity: 1; }
+.scroll-motion-ready .scroll-reveal--visible > :not([aria-hidden="true"]) { translate: 0 0; scale: 1; }
+
+/* Keyboard navigation reveals controls immediately, including parent blocks. */
+.scroll-motion-ready .scroll-reveal:focus-within,
+.scroll-motion-ready .scroll-reveal--instant { opacity: 1; transition-duration: 0s; transition-delay: 0s; }
+.scroll-motion-ready .scroll-reveal:focus-within > :not([aria-hidden="true"]),
+.scroll-motion-ready .scroll-reveal--instant > :not([aria-hidden="true"]) { translate: 0 0; scale: 1; transition-duration: 0s; transition-delay: 0s; }
+
+.portfolio-page .scroll-motion-progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 1200; pointer-events: none; opacity: 0; }
+.scroll-motion-ready .scroll-motion-progress { opacity: 1; }
+.scroll-motion-ready .scroll-motion-progress > span { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, #3675ee, #79b4ff); transform: scaleX(0); transform-origin: left center; }
+
+@media (hover: hover) and (pointer: fine) {
+  .scroll-motion-ready .scroll-reveal .metric-icon .ui-icon,
+  .scroll-motion-ready .scroll-reveal .expertise-icon .ui-icon { transition: rotate .3s ease, scale .3s ease, translate .3s ease; }
+  .scroll-motion-ready .scroll-reveal.intro-metric:hover .metric-icon .ui-icon { rotate: -7deg; scale: 1.1; }
+  .scroll-motion-ready .scroll-reveal.expertise-card:hover .expertise-icon .ui-icon { rotate: -7deg; translate: 0 -2px; }
+}
+
+@media (max-width: 767px) {
+  .scroll-motion-ready .scroll-reveal--left { --scroll-enter-x: -14px; }
+  .scroll-motion-ready .scroll-reveal--right { --scroll-enter-x: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-motion-ready .scroll-reveal { opacity: 1; animation: none; transition: none; }
+  .scroll-motion-ready .scroll-reveal > :not([aria-hidden="true"]) { translate: none; scale: none; animation: none; transition: none; }
+  .scroll-motion-ready .scroll-reveal .ui-icon { rotate: none !important; scale: none !important; translate: none !important; transition: none !important; }
+  .scroll-motion-ready .scroll-motion-progress { display: none; }
+}

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <defs>
+    <linearGradient id="wash" x1="90" y1="40" x2="1120" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f3f7ff"/>
+    </linearGradient>
+    <linearGradient id="city" x1="448" y1="260" x2="852" y2="572" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ebf2ff"/>
+      <stop offset="1" stop-color="#dce9ff"/>
+    </linearGradient>
+    <pattern id="windows" width="40" height="42" patternUnits="userSpaceOnUse">
+      <rect x="11" y="12" width="10" height="16" rx="3" fill="#ffffff"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="750" fill="url(#wash)"/>
+  <circle cx="968" cy="107" r="238" fill="#edf4ff"/>
+  <circle cx="1054" cy="114" r="157" stroke="#dbe8ff" stroke-width="2"/>
+  <circle cx="1054" cy="114" r="208" stroke="#dbe8ff" stroke-width="2"/>
+  <circle cx="179" cy="687" r="146" fill="#eef9f6"/>
+  <text x="88" y="118" fill="#3675ee" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="4">PUBLIC SECTOR</text>
+  <text x="88" y="182" fill="#203656" font-family="Arial, Helvetica, sans-serif" font-size="47" font-weight="700" letter-spacing="-1.5">City sanitation</text>
+  <text x="90" y="224" fill="#7588a3" font-family="Arial, Helvetica, sans-serif" font-size="22">Field reporting &amp; public health</text>
+  <ellipse cx="651" cy="597" rx="395" ry="53" fill="#e7effa"/>
+  <path d="M323 550h655" stroke="#ccdced" stroke-width="3" stroke-linecap="round"/>
+  <rect x="343" y="376" width="128" height="177" rx="10" fill="url(#city)"/>
+  <rect x="343" y="376" width="128" height="177" rx="10" fill="url(#windows)"/>
+  <rect x="490" y="282" width="148" height="271" rx="10" fill="#d7e6ff"/>
+  <rect x="490" y="282" width="148" height="271" rx="10" fill="url(#windows)"/>
+  <path d="M563 256v26" stroke="#3675ee" stroke-width="4" stroke-linecap="round"/>
+  <rect x="658" y="363" width="114" height="190" rx="10" fill="#e2ecfa"/>
+  <rect x="658" y="363" width="114" height="190" rx="10" fill="url(#windows)"/>
+  <rect x="790" y="424" width="145" height="129" rx="10" fill="#d4eee8"/>
+  <rect x="790" y="424" width="145" height="129" rx="10" fill="url(#windows)"/>
+  <path d="M824 554v-56a22 22 0 0 1 44 0v56" fill="#b3dcd2"/>
+  <path d="M516 554v-59a18 18 0 0 1 36 0v59" fill="#b4ccf1"/>
+  <path d="M241 436c67-104 176-47 205 91 39 183 302 97 413-181" stroke="#86d7c3" stroke-width="4" stroke-linecap="round" stroke-dasharray="7 12"/>
+  <circle cx="255" cy="421" r="43" fill="#ffffff" stroke="#e4edf8" stroke-width="2"/>
+  <path d="m242 421 9 9 18-21" stroke="#86d7c3" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="449" cy="546" r="8" fill="#86d7c3" stroke="#ffffff" stroke-width="4"/>
+  <circle cx="697" cy="560" r="8" fill="#86d7c3" stroke="#ffffff" stroke-width="4"/>
+  <path d="M858 222c-44 0-79 35-79 79 0 57 79 124 79 124s79-67 79-124c0-44-35-79-79-79Z" fill="#3675ee"/>
+  <circle cx="858" cy="300" r="30" fill="#ffffff"/>
+  <circle cx="858" cy="300" r="12" fill="#86d7c3"/>
+  <path d="M306 548v-64" stroke="#85bcae" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="306" cy="462" rx="29" ry="40" fill="#b1e2d5"/>
+  <path d="M985 548v-46" stroke="#85bcae" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="985" cy="482" rx="24" ry="34" fill="#b1e2d5"/>
+  <path d="M941 578h39m-35 15h20m-623 12h49" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="1030" cy="383" r="6" fill="#86d7c3"/>
+  <circle cx="747" cy="239" r="5" fill="#b7cdf0"/>
+  <path d="M1036 292v14m-7-7h14M401 316v14m-7-7h14" stroke="#adc6ed" stroke-width="3" stroke-linecap="round"/>
+  <rect x="91" y="646" width="202" height="37" rx="18.5" fill="#ffffff" stroke="#e1e9f4"/>
+  <circle cx="111" cy="665" r="4" fill="#86d7c3"/>
+  <text x="126" y="670" fill="#7f92ab" font-family="Arial, Helvetica, sans-serif" font-size="13" letter-spacing="1">PROJECT ILLUSTRATION</text>
+</svg>

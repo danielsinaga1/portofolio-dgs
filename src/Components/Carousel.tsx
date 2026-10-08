@@ -1,72 +1,44 @@
-import React, { useCallback } from "react";
 import { personalDetails, socialMediaUrl, heroStats } from "./Details";
+import Icon from "./Icon";
 
-const Hero = () => {
-  const { name, tagline, specialty, img, pitch } = personalDetails;
-  const { linkedin, github } = socialMediaUrl;
-
-  const scrollToSection = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    },
-    []
-  );
-
+export default function Hero() {
   const cvUrl = `${process.env.PUBLIC_URL || ""}/cv-daniel.pdf`;
-
-  return (
-    <section id="hero" className="hero-portfolio d-flex align-items-center">
-      <div className="hero-particles" />
-      <div className="container">
-        <div className="row align-items-center">
-          <div className="col-lg-7 col-md-12" data-aos="fade-right" data-aos-delay="100">
-            <span className="hero-status">
-              <span className="hero-status-dot" />Open to opportunities
-            </span>
-            <h1 className="hero-name">{name}</h1>
-            <h2 className="hero-tagline">{tagline}</h2>
-            <p className="hero-specialty">{specialty}</p>
-            <p className="hero-description">{pitch}</p>
-            <div className="hero-stats">
-              {heroStats.map((stat, idx) => (
-                <div key={idx} className="hero-stat">
-                  <span className="hero-stat-value">{stat.value}</span>
-                  <span className="hero-stat-label">{stat.label}</span>
-                </div>
-              ))}
-            </div>
-            <div className="hero-cta d-flex align-items-center gap-3 flex-wrap">
-              <a href="#projects" className="btn-hero-primary" onClick={(e) => scrollToSection(e, "#projects")}>
-                <i className="bi bi-folder2-open me-2" />View Projects
-              </a>
-              <a href="#contact" className="btn-hero-outline" onClick={(e) => scrollToSection(e, "#contact")}>
-                <i className="bi bi-envelope me-2" />Contact Me
-              </a>
-              <a href={cvUrl} download="CV-Daniel-Giovanni-Sinaga.pdf" target="_blank" rel="noreferrer noopener" className="btn-hero-cv">
-                <i className="bi bi-download me-2" />Download CV
-              </a>
-              <div className="hero-social d-flex gap-3 ms-lg-3">
-                <a href={linkedin} target="_blank" rel="noreferrer noopener" className="hero-social-link" title="LinkedIn">
-                  <i className="bi bi-linkedin" />
-                </a>
-                <a href={github} target="_blank" rel="noreferrer noopener" className="hero-social-link" title="GitHub">
-                  <i className="bi bi-github" />
-                </a>
-              </div>
-            </div>
+  return <section id="hero" className="intro-section">
+    <div className="container">
+      <div className="intro-grid">
+        <div className="intro-copy">
+          <span className="intro-eyebrow"><span className="hello-wave" aria-hidden="true">✦</span> HI THERE, I'M DANIEL</span>
+          <h1>Building software.<br />Creating <span>real impact.</span></h1>
+          <p className="intro-role">{personalDetails.tagline}</p>
+          <p className="intro-description">I build reliable platforms, connect complex systems, and bring useful AI to life. Eight years of turning ideas into software that works for people.</p>
+          <div className="intro-actions">
+            <a href="#projects" className="action-button action-primary">Explore my work <Icon name="arrow" /></a>
+            <a href={cvUrl} download="CV-Daniel-Giovanni-Sinaga.pdf" className="action-button action-secondary">Download CV <Icon name="download" /></a>
           </div>
-          <div className="col-lg-5 col-md-12 d-flex justify-content-center" data-aos="fade-left" data-aos-delay="200">
-            <div className="hero-image-wrapper">
-              <div className="hero-image-glow" />
-              <img src={img} alt={name} className="hero-profile-img" />
-            </div>
+          <div className="intro-connect">
+            <span>Find me on</span>
+            <a href={socialMediaUrl.github} target="_blank" rel="noreferrer noopener" aria-label="Daniel on GitHub"><Icon name="github" />GitHub</a>
+            <a href={socialMediaUrl.linkedin} target="_blank" rel="noreferrer noopener" aria-label="Daniel on LinkedIn"><Icon name="linkedin" />LinkedIn</a>
+            <span className="connect-divider" />
+            <span className="intro-location"><Icon name="pin" />Indonesia · UTC+8</span>
           </div>
         </div>
+        <div className="intro-visual">
+          <div className="profile-orbit" aria-hidden="true" />
+          <div className="portrait-card">
+            <span className="profile-status"><span className="availability-dot" />Available for remote work</span>
+            <div className="profile-photo-wrap"><img src={personalDetails.img} alt={personalDetails.name} className="portrait-photo" width="500" height="500" fetchPriority="high" /></div>
+            <div className="portrait-caption"><strong>{personalDetails.name}</strong><span>Software Engineer · Indonesia</span></div>
+            <div className="profile-specialties"><span>Backend</span><span>Full stack</span><span>AI systems</span></div>
+            <div className="profile-footer"><span><Icon name="pin" />Bontang, Indonesia</span><a href={socialMediaUrl.github} target="_blank" rel="noreferrer noopener" aria-label="Explore Daniel's GitHub"><Icon name="github" /><Icon name="arrow" /></a></div>
+          </div>
+          <div className="hero-floating-card"><span><Icon name="code" /></span><div><strong>Ideas into impact</strong><span>Thoughtfully built. Ready for the real world.</span></div></div>
+          <span className="hero-sparkle" aria-hidden="true">✧</span>
+        </div>
       </div>
-    </section>
-  );
-};
-
-export default Hero;
+      <div className="intro-bottom">
+        <div className="intro-metrics">{heroStats.map((stat, index) => <div className="intro-metric" key={stat.label}><span className="metric-icon"><Icon name={["briefcase", "layers", "server", "globe"][index]} /></span><div><strong>{stat.value}</strong><span>{stat.label}</span></div></div>)}</div>
+      </div>
+    </div>
+  </section>;
+}

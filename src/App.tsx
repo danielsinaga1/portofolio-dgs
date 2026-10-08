@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "./enhancements.css";
-import "./";
+import "./scroll-effects.css";
 import Preloader from "./layout/Preloader";
 const Home = lazy(() => import("./ui/Home"));
 const NoPage = lazy(() => import("./layout/NoPage"));

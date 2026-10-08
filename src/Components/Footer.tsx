@@ -1,42 +1,9 @@
-import React from "react";
 import { personalDetails, socialMediaUrl, contactDetails } from "./Details";
+import Icon from "./Icon";
 
-const Footer = () => {
-  const { name } = personalDetails;
-  const { linkedin, github } = socialMediaUrl;
-
-  return (
-    <footer id="footer" className="footer-portfolio">
-      <div className="footer-content">
-        <div className="container">
-          <div className="row gy-4 align-items-center">
-            <div className="col-lg-4 col-md-12">
-              <span className="footer-logo">&lt;{name.split(" ")[0]} /&gt;</span>
-              <p className="footer-tagline">Software Engineer</p>
-            </div>
-            <div className="col-lg-4 col-md-12 text-center">
-              <div className="footer-social">
-                <a href={linkedin} target="_blank" rel="noreferrer noopener" title="LinkedIn">
-                  <i className="bi bi-linkedin" />
-                </a>
-                <a href={github} target="_blank" rel="noreferrer noopener" title="GitHub">
-                  <i className="bi bi-github" />
-                </a>
-                <a href={`mailto:${contactDetails.email}`} title="Email">
-                  <i className="bi bi-envelope" />
-                </a>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-12 text-lg-end text-center">
-              <p className="footer-copyright">
-                &copy; {new Date().getFullYear()} {name}. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
-export default Footer;
+export default function Footer() {
+  return <footer className="site-footer"><div className="container">
+    <div className="footer-main"><a href="/#hero" className="footer-brand"><span className="brand-mark">dg<span>.</span></span><span>Daniel Giovanni Sinaga<br />Software Engineer</span></a><nav className="footer-links" aria-label="Social and contact links"><a href={socialMediaUrl.github} target="_blank" rel="noreferrer noopener">GitHub <Icon name="arrow" /></a><a href={socialMediaUrl.linkedin} target="_blank" rel="noreferrer noopener">LinkedIn <Icon name="arrow" /></a><a href={`mailto:${contactDetails.email}`}>Email <Icon name="arrow" /></a></nav></div>
+    <div className="footer-bottom"><p>© {new Date().getFullYear()} {personalDetails.name}</p><span>Based in Indonesia<span className="footer-dot" aria-hidden="true" /></span></div>
+  </div></footer>;
+}

@@ -1,166 +1,109 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import InnerHeader from "../Components/InnerHeader";
 import Footer from "../Components/Footer";
-import Carousel from "../Components/Carousel";
-import ClientList from "../Components/ClientList";
-import Facts from "../Components/Facts";
+import Hero from "../Components/Carousel";
+import Skills from "../Components/ClientList";
+import Experience from "../Components/Facts";
 import Credentials from "../Components/Credentials";
-import Revenue from "../Components/Revenue";
+import Projects from "../Components/Revenue";
+import Icon from "../Components/Icon";
+import ScrollEffects from "../Components/ScrollEffects";
+import Technology from "../Components/Technology";
 import { contactDetails, socialMediaUrl } from "../Components/Details";
 import emailjs from "emailjs-com";
 
-const ContactSection = () => {
+const emptyFields = { username: "", email: "", subject: "", message: "" };
+
+function ContactSection() {
   const form = useRef<HTMLFormElement>(null);
-  const [inputFields, setInputFields] = useState({ username: "", email: "", subject: "", message: "" });
+  const [fields, setFields] = useState(emptyFields);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setInputFields(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: "" }));
-  }, [errors]);
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
+    setFields(previous => ({ ...previous, [name]: value }));
+    setErrors(previous => ({ ...previous, [name]: "" }));
+    setStatus("idle");
+  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const newErrors: Record<string, string> = {};
-    if (inputFields.username.length < 2) newErrors.username = "Name is required";
-    if (!/\S+@\S+\.\S+/.test(inputFields.email)) newErrors.email = "Valid email is required";
-    if (inputFields.message.length < 10) newErrors.message = "Message must be at least 10 characters";
-    if (Object.keys(newErrors).length > 0) { setErrors(newErrors); return; }
-
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    if (isLoading) return;
+    const validation: Record<string, string> = {};
+    if (fields.username.trim().length < 2) validation.username = "Please enter your name (at least 2 characters).";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email.trim())) validation.email = "Please enter a valid email address.";
+    if (fields.message.trim().length < 10) validation.message = "Please tell me a little more (at least 10 characters).";
+    setErrors(validation);
+    setStatus("idle");
+    if (Object.keys(validation).length) {
+      form.current?.querySelector<HTMLElement>(`[name="${Object.keys(validation)[0]}"]`)?.focus();
+      return;
+    }
+    if (!form.current) return;
     setIsLoading(true);
     try {
-      await emailjs.sendForm('service_k80xoyk', 'template_q6z4pl4', form.current!, 'yV95_dZd7WA5uN3f7');
-      setInputFields({ username: "", email: "", subject: "", message: "" });
-      setSuccess(true);
-      setTimeout(() => setSuccess(false), 4000);
-    } catch (error) {
-      console.error('Email sending failed:', error);
+      await emailjs.sendForm("service_k80xoyk", "template_q6z4pl4", form.current, "yV95_dZd7WA5uN3f7");
+      setFields(emptyFields);
+      setStatus("success");
+    } catch {
+      setStatus("error");
     } finally {
       setIsLoading(false);
     }
   };
 
-  return (
-    <section id="contact" className="contact-section">
-      <div className="container" data-aos="fade-up">
-        <div className="section-header">
-          <span className="section-subtitle">Get In Touch</span>
-          <h2>Contact Me</h2>
-        </div>
-        <div className="row g-5">
-          <div className="col-lg-5" data-aos="fade-right">
-            <div className="contact-info-card">
-              <h3>Let's work together</h3>
-              <p>Feel free to reach out for collaborations, job opportunities, or just to say hello!</p>
-              <div className="contact-info-items">
-                <div className="contact-info-item">
-                  <div className="contact-icon"><i className="bi bi-envelope" /></div>
-                  <div>
-                    <h5>Email</h5>
-                    <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
-                  </div>
-                </div>
-                <div className="contact-info-item">
-                  <div className="contact-icon"><i className="bi bi-phone" /></div>
-                  <div>
-                    <h5>Phone</h5>
-                    <span>{contactDetails.phone}</span>
-                  </div>
-                </div>
-                <div className="contact-info-item">
-                  <div className="contact-icon"><i className="bi bi-linkedin" /></div>
-                  <div>
-                    <h5>LinkedIn</h5>
-                    <a href={socialMediaUrl.linkedin} target="_blank" rel="noreferrer noopener">Daniel Giovanni Sinaga</a>
-                  </div>
-                </div>
-                <div className="contact-info-item">
-                  <div className="contact-icon"><i className="bi bi-github" /></div>
-                  <div>
-                    <h5>GitHub</h5>
-                    <a href={socialMediaUrl.github} target="_blank" rel="noreferrer noopener">danielsinaga1</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-7" data-aos="fade-left">
-            <form ref={form} className="contact-form" onSubmit={handleSubmit}>
-              {success && <div className="alert alert-success">Message sent successfully!</div>}
-              <div className="row g-3">
-                <div className="col-md-6">
-                  <input type="text" name="username" className={`form-control ${errors.username ? 'is-invalid' : ''}`}
-                    placeholder="Your Name" value={inputFields.username} onChange={handleChange} disabled={isLoading} />
-                  {errors.username && <div className="invalid-feedback">{errors.username}</div>}
-                </div>
-                <div className="col-md-6">
-                  <input type="email" name="email" className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                    placeholder="Your Email" value={inputFields.email} onChange={handleChange} disabled={isLoading} />
-                  {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-                </div>
-                <div className="col-12">
-                  <input type="text" name="subject" className="form-control"
-                    placeholder="Subject" value={inputFields.subject} onChange={handleChange} disabled={isLoading} />
-                </div>
-                <div className="col-12">
-                  <textarea name="message" className={`form-control ${errors.message ? 'is-invalid' : ''}`}
-                    rows={5} placeholder="Your Message" value={inputFields.message} onChange={handleChange} disabled={isLoading} />
-                  {errors.message && <div className="invalid-feedback">{errors.message}</div>}
-                </div>
-                <div className="col-12">
-                  <button type="submit" className="btn-submit" disabled={isLoading}>
-                    {isLoading ? <><i className="bi bi-arrow-repeat spin me-2" />Sending...</> : <><i className="bi bi-send me-2" />Send Message</>}
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+  return <section id="contact" className="connect-section"><div className="container">
+    <div className="connect-grid">
+      <div className="connect-copy">
+        <span className="section-eyebrow"><span>05</span>LET'S WORK TOGETHER</span>
+        <h2>Good things start<br />with a <span>hello.</span></h2>
+        <p>Have a project in mind or a role that could be a good fit? Let's talk about what we can build together.</p>
+        <a className="connect-email" href={`mailto:${contactDetails.email}`}>{contactDetails.email}<Icon name="arrow" /></a>
+        <div className="connect-details"><a href={`tel:${contactDetails.phone.replace(/[^+\d]/g, "")}`}><Icon name="phone" />{contactDetails.phone}</a><span><Icon name="globe" />Based in Indonesia. Open to remote.</span></div>
+        <div className="connect-socials"><a href={socialMediaUrl.github} target="_blank" rel="noreferrer noopener" aria-label="GitHub"><Icon name="github" /></a><a href={socialMediaUrl.linkedin} target="_blank" rel="noreferrer noopener" aria-label="LinkedIn"><Icon name="linkedin" /></a><span>Good conversations lead to great things.</span></div>
+        <div className="contact-availability"><span className="availability-dot" />Open to remote roles & collaborations</div>
       </div>
-    </section>
-  );
-};
+      <form ref={form} className="message-form" onSubmit={handleSubmit} noValidate aria-label="Contact Daniel">
+        <h3>Let's start a conversation.</h3><p>Tell me a little about yourself and your idea.</p>
+        <div className="message-form-grid">
+          <div className="message-field"><label htmlFor="contact-name">Your name <span>*</span></label><input id="contact-name" type="text" name="username" autoComplete="name" placeholder="Alex Johnson" value={fields.username} onChange={handleChange} disabled={isLoading} required aria-invalid={!!errors.username} aria-describedby={errors.username ? "name-error" : undefined} />{errors.username && <span id="name-error" className="field-error">{errors.username}</span>}</div>
+          <div className="message-field"><label htmlFor="contact-email">Email address <span>*</span></label><input id="contact-email" type="email" name="email" autoComplete="email" placeholder="alex@company.com" value={fields.email} onChange={handleChange} disabled={isLoading} required aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} />{errors.email && <span id="email-error" className="field-error">{errors.email}</span>}</div>
+          <div className="message-field full-width"><label htmlFor="contact-subject">What's it about?</label><input id="contact-subject" type="text" name="subject" placeholder="A project, an opportunity, or just hello" value={fields.subject} onChange={handleChange} disabled={isLoading} /></div>
+          <div className="message-field full-width"><label htmlFor="contact-message">Your message <span>*</span></label><textarea id="contact-message" name="message" rows={4} placeholder="I'd love to talk about..." value={fields.message} onChange={handleChange} disabled={isLoading} required aria-invalid={!!errors.message} aria-describedby={errors.message ? "message-error" : undefined} />{errors.message && <span id="message-error" className="field-error">{errors.message}</span>}</div>
+        </div>
+        {status === "success" && <div className="form-notice is-success" role="status"><Icon name="check" />Your message is on its way. Thanks for reaching out!</div>}
+        {status === "error" && <div className="form-notice is-error" role="alert">Your message couldn't be sent. Please try again or <a href={`mailto:${contactDetails.email}`}>email me directly</a>.</div>}
+        <button type="submit" className="action-button action-primary message-submit" disabled={isLoading}>{isLoading ? "Sending your message…" : "Send message"}<Icon name={isLoading ? "mail" : "arrow"} /></button>
+        <span className="form-note">Your details stay private. Just a conversation, no mailing lists.</span>
+      </form>
+    </div>
+  </div></section>;
+}
 
-const ScrollToTop = () => {
+function ScrollToTop() {
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
+    const onScroll = () => setVisible(window.scrollY > 500);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  return <button type="button" className={`back-to-top${visible ? " is-visible" : ""}`} onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })} aria-label="Back to top" tabIndex={visible ? 0 : -1}><Icon name="up" /></button>;
+}
 
-  return (
-    <button
-      className={`scroll-to-top-btn${visible ? " visible" : ""}`}
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      aria-label="Scroll to top"
-    >
-      <i className="bi bi-arrow-up" />
-    </button>
-  );
-};
-
-const Home = () => {
-  return (
-    <>
-      <a href="#main" className="skip-link">Skip to content</a>
-      <InnerHeader />
-      <Carousel />
-      <main id="main">
-        <ClientList />
-        <Facts />
-        <Credentials />
-        <Revenue />
-        <ContactSection />
-      </main>
-      <Footer />
-      <ScrollToTop />
-    </>
-  );
-};
-
-export default Home;
+export default function Home() {
+  return <div className="portfolio-page">
+    <ScrollEffects />
+    <a href="#main" className="skip-link">Skip to content</a>
+    <InnerHeader />
+    <main id="main" tabIndex={-1}>
+      <Hero />
+      <div className="domain-strip"><div className="container"><span>MY EVERYDAY TOOLKIT</span><div>{["Java", "Spring Boot", "Laravel", "Python", "React", "Docker"].map(name => <Technology key={name} name={name} />)}</div></div></div>
+      <Projects /><Skills /><Experience /><Credentials /><ContactSection />
+    </main>
+    <Footer /><ScrollToTop />
+  </div>;
+}

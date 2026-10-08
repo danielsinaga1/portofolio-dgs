@@ -1,118 +1,65 @@
-import React, { useEffect, useCallback, useMemo, useState } from "react";
-import { personalDetails, logos } from "./Details";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { personalDetails } from "./Details";
+import Icon from "./Icon";
 
-const InnerHeader: React.FC = () => {
-  const [activeSection, setActiveSection] = useState("");
+const navItems = [
+  { id: "hero", label: "Home" },
+  { id: "projects", label: "Work" },
+  { id: "skills", label: "Expertise" },
+  { id: "experience", label: "Experience" },
+];
+
+export default function InnerHeader() {
+  const [activeSection, setActiveSection] = useState("hero");
   const [menuOpen, setMenuOpen] = useState(false);
-  const { name } = personalDetails;
-
-  const toTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      const header = document.querySelector("#header");
-      if (header) {
-        header.classList.toggle("sticked", window.scrollY > 80);
-      }
-
-      const sections = document.querySelectorAll("section[id]");
-      let current = "";
-      sections.forEach((section) => {
-        const el = section as HTMLElement;
-        const sectionTop = el.offsetTop - 100;
-        if (window.scrollY >= sectionTop) {
-          current = el.getAttribute("id") || "";
-        }
+      setScrolled(window.scrollY > 24);
+      let current = "hero";
+      document.querySelectorAll<HTMLElement>("section[id]").forEach(section => {
+        if (section.getBoundingClientRect().top <= 160) current = section.id;
       });
       setActiveSection(current);
     };
-
-    document.addEventListener("scroll", handleScroll, { passive: true });
-    return () => document.removeEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleMobileMenu = useCallback((event: React.MouseEvent) => {
-    event.preventDefault();
-    const mobileNavShow = document.querySelector(".mobile-nav-show");
-    const mobileNavHide = document.querySelector(".mobile-nav-hide");
-    const body = document.querySelector("body");
-    if (mobileNavShow && mobileNavHide && body) {
-      mobileNavShow.classList.toggle("d-none");
-      mobileNavHide.classList.toggle("d-none");
-      body.classList.toggle("mobile-nav-active");
-      setMenuOpen(body.classList.contains("mobile-nav-active"));
-    }
-  }, []);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        document.getElementById("menu-toggle")?.focus();
+      }
+    };
+    const onResize = () => { if (window.innerWidth >= 900) setMenuOpen(false); };
+    document.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [menuOpen]);
 
-  const navItems = useMemo(() => [
-    { href: "#hero", label: "Home", key: "hero" },
-    { href: "#skills", label: "Skills", key: "skills" },
-    { href: "#experience", label: "Experience", key: "experience" },
-    { href: "#projects", label: "Projects", key: "projects" },
-    { href: "#contact", label: "Contact", key: "contact" }
-  ], []);
-
-  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const body = document.querySelector("body");
-    const mobileNavShow = document.querySelector(".mobile-nav-show");
-    const mobileNavHide = document.querySelector(".mobile-nav-hide");
-    if (body?.classList.contains("mobile-nav-active") && mobileNavShow && mobileNavHide) {
-      mobileNavShow.classList.remove("d-none");
-      mobileNavHide.classList.add("d-none");
-      body.classList.remove("mobile-nav-active");
-      setMenuOpen(false);
-    }
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
-
-  return (
-    <header id="header" className="header fixed-top">
-      <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <a href="#hero" className="logo" onClick={toTop} aria-label={`${name} — back to top`}>
-          <img src={logos.logogradient} alt={name} className="logo-img" />
-        </a>
-        
-        <button
-          type="button"
-          className="mobile-nav-toggle-btn"
-          onClick={handleMobileMenu}
-          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={menuOpen}
-          aria-controls="navbar"
-        >
-          <i className="mobile-nav-toggle mobile-nav-show bi bi-list" />
-          <i className="mobile-nav-toggle mobile-nav-hide d-none bi bi-x" />
-        </button>
-        
-        <nav id="navbar" className="navbar">
-          <ul>
-            {navItems.map(({ href, label, key }) => (
-              <li key={key}>
-                <a 
-                  href={href}
-                  className={activeSection === key ? "active" : ""}
-                  onClick={(e) => handleNavClick(e, href)}
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-            <li>
-              <a href="#contact" className="nav-cta-btn" onClick={(e) => handleNavClick(e, "#contact")}>
-                Hire Me
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-  );
-};
-
-export default InnerHeader;
+  const sectionUrl = (id: string) => pathname === "/" ? `#${id}` : `/#${id}`;
+  return <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
+    <div className="container site-header-inner">
+      <a href={sectionUrl("hero")} className="site-brand" onClick={() => setMenuOpen(false)} aria-label={`${personalDetails.name} — Home`}>
+        <span className="brand-mark">dg<span>.</span></span>
+        <span className="brand-caption">Daniel Giovanni<span>Software Engineer</span></span>
+      </a>
+      <button id="menu-toggle" type="button" className="menu-toggle" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="site-navigation" onClick={() => setMenuOpen(!menuOpen)}><Icon name={menuOpen ? "close" : "menu"} /></button>
+      <nav id="site-navigation" className={`site-nav${menuOpen ? " is-open" : ""}`} aria-label="Main navigation">
+        {navItems.map(item => <a key={item.id} href={sectionUrl(item.id)} className={activeSection === item.id ? "is-active" : ""} aria-current={activeSection === item.id ? "location" : undefined} onClick={() => setMenuOpen(false)}>{item.label}</a>)}
+        <a href={sectionUrl("contact")} className="nav-contact" onClick={() => setMenuOpen(false)}>Let's talk <Icon name="arrow" /></a>
+      </nav>
+    </div>
+    {menuOpen && <button type="button" className="nav-backdrop" aria-label="Dismiss navigation" onClick={() => setMenuOpen(false)} />}
+  </header>;
+}
