@@ -102,7 +102,7 @@ button:disabled { cursor: wait; opacity: .65; }
 .profile-status { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 7px 11px; border-radius: 30px; color: #327c67; background: #edf9f3; font-size: 10px; width: fit-content; margin: 0 auto; }
 .availability-dot { display: inline-block; width: 6px; height: 6px; flex-shrink: 0; background: #49af82; border-radius: 50%; }
 .profile-photo-wrap { width: 160px; height: 160px; border-radius: 50%; border: 6px solid white; outline: 1px solid #e2eafa; overflow: hidden; background: #edf4ff; margin: 23px auto 21px; }
-.portrait-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; transform: scale(1.65); transform-origin: center top; filter: none; }
+.portrait-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: none; }
 .portrait-caption { text-align: center; }
 .portrait-caption strong { display: block; font-size: 18px; font-family: var(--font-primary); font-weight: 700; letter-spacing: -.4px; line-height: 1.5; }
 .portrait-caption > span { display: block; color: var(--muted); font-size: 12px; margin-top: 5px; }
