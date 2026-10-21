@@ -1,8 +1,12 @@
 import React from "react";
 
 const paths: Record<string, React.ReactNode> = {
+  play: <path d="m8 4 12 8-12 8Z" />,
+  pause: <path d="M8 5v14M16 5v14" />,
   arrow: <path d="M7 17 17 7M7 7h10v10" />,
   right: <path d="M4 12h16m-6-6 6 6-6 6" />,
+  left: <path d="M20 12H4m6-6-6 6 6 6" />,
+  expand: <path d="M8 3H3v5m13-5h5v5M3 16v5h5m8 0h5v-5M3 3l6 6m12-6-6 6M3 21l6-6m12 6-6-6" />,
   down: <path d="M12 4v16m-6-6 6 6 6-6" />,
   up: <path d="M12 20V4m-6 6 6-6 6 6" />,
   download: <path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" />,

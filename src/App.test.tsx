@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import App from './App';
 import emailjs from 'emailjs-com';
+import { projectDetails } from './Components/Details';
 
 jest.mock('emailjs-com', () => ({ __esModule: true, default: { sendForm: jest.fn() } }));
 const sendForm = emailjs.sendForm as jest.Mock;
@@ -26,8 +27,8 @@ test('shows the portfolio and expands all projects', async () => {
   await openPortfolio();
   const projects = document.getElementById('projects')!;
   expect(projects.querySelectorAll('.work-card')).toHaveLength(4);
-  fireEvent.click(screen.getByRole('button', { name: 'View all 7 projects' }));
-  expect(projects.querySelectorAll('.work-card')).toHaveLength(7);
+  fireEvent.click(screen.getByRole('button', { name: `View all ${projectDetails.length} projects` }));
+  expect(projects.querySelectorAll('.work-card')).toHaveLength(projectDetails.length);
   fireEvent.click(screen.getByRole('button', { name: 'Show selected work' }));
   expect(projects.querySelectorAll('.work-card')).toHaveLength(4);
 });
@@ -65,6 +66,33 @@ test('toggles mobile navigation and closes it after selecting a section', async 
   expect(screen.getByRole('button', { name: 'Close navigation', expanded: true })).toHaveAttribute('aria-expanded', 'true');
   fireEvent.click(screen.getByRole('link', { name: 'Expertise' }));
   expect(screen.getByRole('button', { name: 'Open navigation' })).toHaveAttribute('aria-expanded', 'false');
+});
+
+test('explores the SPP gallery and returns from the enlarged view before closing the project', async () => {
+  await openPortfolio();
+  const trigger = screen.getByRole('button', { name: 'View Tuition Fee Management (SPP)' });
+  trigger.focus();
+  fireEvent.click(trigger);
+  const dialog = screen.getByRole('dialog', { name: 'Tuition Fee Management (SPP)' });
+  const gallery = within(dialog).getByRole('region', { name: 'Project gallery' });
+  expect(within(gallery).getByRole('button', { name: 'Show Project overview' })).toHaveAttribute('aria-pressed', 'true');
+  fireEvent.click(within(gallery).getByRole('button', { name: 'Previous image' }));
+  expect(within(gallery).getByRole('heading', { name: 'Mobile dashboard' })).toBeInTheDocument();
+  fireEvent.click(within(gallery).getByRole('button', { name: 'Show Payments & receipts' }));
+  const enlarge = within(gallery).getByRole('button', { name: 'Enlarge Payments & receipts' });
+  await waitFor(() => expect(within(dialog).getByRole('button', { name: 'Close project details' })).toHaveFocus());
+  enlarge.focus();
+  fireEvent.click(enlarge);
+  expect(within(dialog).getByRole('button', { name: 'Close enlarged gallery' })).toHaveFocus();
+  fireEvent.keyDown(document, { key: 'ArrowRight' });
+  expect(within(gallery).getByRole('heading', { name: 'Reports & arrears' })).toBeInTheDocument();
+  fireEvent.keyDown(document, { key: 'Escape' });
+  expect(dialog).toBeInTheDocument();
+  expect(within(gallery).getByRole('button', { name: 'Enlarge Reports & arrears' })).toHaveFocus();
+  expect(document.querySelector('.portfolio-page')).toHaveAttribute('inert');
+  fireEvent.keyDown(document, { key: 'Escape' });
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(trigger).toHaveFocus();
 });
 
 test('validates contact fields without sending an invalid message', async () => {

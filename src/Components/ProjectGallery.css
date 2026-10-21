@@ -1,0 +1,71 @@
+/* Curated project images, within the existing project dialog. */
+.work-preview.has-gallery .project-window-screen { background: #0b1c2a; }
+.work-preview.has-gallery .project-window-screen img { object-fit: contain; object-position: center; }
+.project-gallery { min-width: 0; }
+.gallery-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 15px; margin-bottom: 17px; }
+.gallery-eyebrow { color: var(--brand); font-size: 9px; font-weight: 600; letter-spacing: 1.4px; }
+.gallery-heading h3 { margin: 6px 0 0; font-size: 21px; font-weight: 700; letter-spacing: -.5px; }
+.gallery-total { color: #72839b; font-size: 11px; text-align: right; }
+.gallery-figure { margin: 0; }
+.gallery-stage { display: flex; justify-content: center; align-items: center; aspect-ratio: 8 / 5; overflow: hidden; border: 1px solid #dce5f0; border-radius: 11px; background: #edf2f7; }
+.gallery-expand { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.gallery-image { display: block; width: 100%; height: 100%; object-fit: contain; }
+.gallery-expand-label { position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 7px; padding: 8px 11px; border: 1px solid #ffffff40; border-radius: 7px; background: #10263eeb; color: white; font-size: 10px; box-shadow: 0 3px 12px #10263e20; }
+.gallery-expand-label .ui-icon { width: 14px; height: 14px; }
+.gallery-expand:hover .gallery-expand-label { background: #20558a; }
+.gallery-caption { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 116px; padding: 18px 0; }
+.gallery-index { display: block; margin-bottom: 6px; font-size: 10px; font-weight: 600; letter-spacing: 1px; color: var(--brand); }
+.gallery-caption h4 { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
+.gallery-caption p { max-width: 610px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.gallery-controls { display: flex; gap: 7px; flex-shrink: 0; }
+.gallery-controls button { display: flex; justify-content: center; align-items: center; width: 38px; height: 38px; padding: 0; border: 1px solid #dce5f2; border-radius: 50%; background: white; color: #5478a5; }
+.gallery-controls button:hover { border-color: #9ab9e5; background: #edf4ff; color: var(--brand); }
+.gallery-controls .ui-icon { width: 17px; height: 17px; }
+.gallery-thumbnails { position: relative; display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain; padding: 3px 3px 10px; scroll-padding-inline: 3px; scrollbar-width: thin; scrollbar-color: #c8d6e9 transparent; }
+.gallery-thumbnail { display: flex; flex-direction: column; flex: 0 0 132px; min-width: 0; padding: 5px; border: 1px solid #e0e7f1; border-radius: 8px; background: #fff; text-align: left; color: #73839b; }
+.gallery-thumbnail-image { display: flex; justify-content: center; align-items: center; width: 100%; aspect-ratio: 8 / 5; overflow: hidden; border-radius: 4px; background: #edf2f7; }
+.gallery-thumbnail img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.gallery-thumbnail > span:last-child { padding: 7px 3px 3px; font-size: 10px; line-height: 1.5; }
+.gallery-thumbnail:hover { border-color: #9ab9e5; }
+.gallery-thumbnail.is-active { border-color: #7da7e2; box-shadow: 0 0 0 1px #7da7e2; background: #f1f6ff; color: #315f9f; }
+.gallery-hint { margin: 8px 0 4px; color: #7b8ba2; font-size: 10px; line-height: 1.6; }
+.case-overlay.is-gallery-expanded { padding: 16px; background: #071422e8; }
+.case-dialog.is-gallery-expanded { display: flex; flex-direction: column; max-width: 1500px; height: calc(100dvh - 32px); max-height: calc(100dvh - 32px); overflow: hidden; }
+.case-dialog.is-gallery-expanded .case-header { align-items: center; flex-shrink: 0; padding: 14px 24px; }
+.case-dialog.is-gallery-expanded .case-header h2 { font-size: 18px; }
+.case-dialog.is-gallery-expanded .case-category { margin-bottom: 3px; }
+.case-dialog.is-gallery-expanded .case-body { display: flex; flex: 1; min-height: 0; padding: 16px 24px 12px; }
+.project-gallery.is-expanded { display: flex; flex-direction: column; width: 100%; min-height: 0; }
+.project-gallery.is-expanded .gallery-heading { display: none; }
+.project-gallery.is-expanded .gallery-figure { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.project-gallery.is-expanded .gallery-stage { flex: 1; min-height: 0; aspect-ratio: auto; }
+.project-gallery.is-expanded .gallery-caption { flex-shrink: 0; min-height: 0; padding: 12px 0; }
+.project-gallery.is-expanded .gallery-caption p { max-width: 1000px; }
+.project-gallery.is-expanded .gallery-thumbnails { flex-shrink: 0; }
+.project-gallery.is-expanded .gallery-thumbnail { flex-basis: 108px; }
+.project-gallery.is-expanded .gallery-thumbnail > span:last-child { font-size: 9px; padding-top: 5px; }
+.project-gallery.is-expanded .gallery-hint { flex-shrink: 0; margin: 3px 0 0; }
+@media (max-width: 600px) {
+  .gallery-heading { align-items: center; }
+  .gallery-heading h3 { font-size: 18px; }
+  .gallery-total { font-size: 10px; }
+  .gallery-total > span { display: block; margin-top: 3px; }
+  .gallery-caption { align-items: flex-start; min-height: 145px; gap: 12px; }
+  .gallery-caption h4 { font-size: 14px; }
+  .gallery-caption p { font-size: 11px; }
+  .gallery-controls { gap: 5px; }
+  .gallery-controls button { width: 34px; height: 34px; }
+  .gallery-thumbnail { flex-basis: 106px; }
+  .gallery-expand-label { padding: 6px 8px; right: 8px; bottom: 8px; font-size: 9px; }
+  .case-overlay.is-gallery-expanded { padding: 6px; }
+  .case-dialog.is-gallery-expanded { height: calc(100dvh - 12px); max-height: calc(100dvh - 12px); border-radius: 10px; }
+  .case-dialog.is-gallery-expanded .case-header { padding: 13px; gap: 12px; }
+  .case-dialog.is-gallery-expanded .case-header h2 { font-size: 15px; }
+  .case-dialog.is-gallery-expanded .case-body { padding: 10px 13px; }
+  .project-gallery.is-expanded .gallery-caption { padding: 12px 0; }
+  .project-gallery.is-expanded .gallery-thumbnail { flex-basis: 90px; }
+}
+@media (max-height: 600px) and (orientation: landscape) {
+  .project-gallery.is-expanded .gallery-thumbnails { display: none; }
+  .project-gallery.is-expanded .gallery-caption p { display: none; }
+}

@@ -9,7 +9,7 @@ import Credentials from "../Components/Credentials";
 import Projects from "../Components/Revenue";
 import Icon from "../Components/Icon";
 import ScrollEffects from "../Components/ScrollEffects";
-import Technology from "../Components/Technology";
+import ToolkitMarquee from "../Components/ToolkitMarquee";
 import { contactDetails, socialMediaUrl } from "../Components/Details";
 import emailjs from "emailjs-com";
 
@@ -101,7 +101,7 @@ export default function Home() {
     <InnerHeader />
     <main id="main" tabIndex={-1}>
       <Hero />
-      <div className="domain-strip"><div className="container"><span>MY EVERYDAY TOOLKIT</span><div>{["Java", "Spring Boot", "Laravel", "Python", "React", "Docker"].map(name => <Technology key={name} name={name} />)}</div></div></div>
+      <ToolkitMarquee />
       <Projects /><Skills /><Experience /><Credentials /><ContactSection />
     </main>
     <Footer /><ScrollToTop />

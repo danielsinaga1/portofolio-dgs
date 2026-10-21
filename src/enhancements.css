@@ -131,9 +131,18 @@ button:disabled { cursor: wait; opacity: .65; }
 .domain-strip { background: white; border-block: 1px solid #eaf0f8; padding: 25px 0; }
 .domain-strip .container { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
 .domain-strip .container > span { color: #99a4b6; font-size: 10px; font-weight: 500; letter-spacing: .9px; white-space: nowrap; }
-.domain-strip .container > div { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex: 1; }
-.domain-strip .container > div > span { display: flex; align-items: center; gap: 8px; color: #7b8aa2; font-size: 14px; font-weight: 500; }
-.domain-strip .ui-icon { color: #9fb2d2; width: 21px; height: 21px; }
+.toolkit-viewport { flex: 1; min-width: 0; overflow: hidden; padding-block: 8px; mask-image: linear-gradient(to right, transparent, black 28px, black calc(100% - 28px), transparent); }
+.toolkit-track { display: flex; width: max-content; animation: toolkit-travel 42s linear infinite; }
+.toolkit-group { display: flex; flex-shrink: 0; align-items: center; gap: 38px; padding-right: 38px; }
+.toolkit-group .technology-item { gap: 9px; white-space: nowrap; color: #62738b; font-size: 14px; font-weight: 500; }
+.toolkit-track.is-paused { animation-play-state: paused; }
+.toolkit-toggle { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 36px; height: 36px; padding: 0; border: 1px solid #e5ebf4; border-radius: 50%; background: #f8fbff; color: #6282b0; }
+.toolkit-toggle:hover { background: #edf4ff; color: var(--brand); }
+.toolkit-toggle .ui-icon { width: 15px; height: 15px; }
+@keyframes toolkit-travel { to { transform: translateX(-50%); } }
+@media (hover: hover) and (pointer: fine) {
+  .toolkit-viewport:hover .toolkit-track { animation-play-state: paused; }
+}
 
 /* Section headings */
 .section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 50px; margin-bottom: 35px; }
@@ -381,8 +390,7 @@ button:disabled { cursor: wait; opacity: .65; }
   .metric-icon { width: 36px; height: 36px; }
   .intro-metric strong { font-size: 23px; }
   .domain-strip .container { gap: 25px; }
-  .domain-strip .container > div { gap: 22px; }
-  .domain-strip .container > div > span { font-size: 12px; }
+  .toolkit-group .technology-item { font-size: 12px; }
   .section-heading > p { max-width: 300px; }
   .journey-grid { gap: 28px; }
   .connect-grid { gap: 40px; }
@@ -508,9 +516,9 @@ button:disabled { cursor: wait; opacity: .65; }
   .intro-metric strong { font-size: 22px; }
   .intro-metric div > span { font-size: 9px; }
   .domain-strip { padding: 23px 0; }
-  .domain-strip .container > div { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 21px 17px; }
-  .domain-strip .container > div > span { font-size: 12px; gap: 7px; }
-  .domain-strip .ui-icon { width: 17px; height: 17px; }
+  .domain-strip .container { gap: 12px; }
+  .toolkit-group { gap: 26px; padding-right: 26px; }
+  .toolkit-group .technology-item { font-size: 12px; gap: 7px; }
   .domain-strip .technology-logo img { width: 19px; height: 19px; }
   .section-heading { margin-bottom: 27px; }
   .section-heading h2 { font-size: 29px; letter-spacing: -.9px; }
@@ -584,13 +592,16 @@ button:disabled { cursor: wait; opacity: .65; }
   .metric-icon { width: 28px; height: 28px; }
   .intro-metric strong { font-size: 20px; }
   .intro-metric div > span { font-size: 8px; }
-  .domain-strip .container > div { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 17px; }
   .work-preview { height: 208px; padding: 16px; }
   .work-card-body { padding: 20px; }
   .connect-email { font-size: 12px; }
   .message-form h3 { font-size: 18px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .toolkit-viewport { overflow: visible; mask-image: none; }
+  .toolkit-track { width: auto; animation: none; transform: none; }
+  .toolkit-group { flex-shrink: 1; flex-wrap: wrap; gap: 18px 24px; padding-right: 0; }
+  .toolkit-group[aria-hidden="true"], .toolkit-toggle { display: none; }
   .technology-item.has-logo:hover .technology-logo img { animation: none; }
   html, :root { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
